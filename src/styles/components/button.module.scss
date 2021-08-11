@@ -1,0 +1,16 @@
+@import '../utils/variables.scss';
+
+.button {
+    padding: 1rem 48px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: .2s;
+    color: $color-primary;
+
+    &:hover {
+        filter: brightness(.8);
+    }
+}
