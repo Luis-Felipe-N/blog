@@ -5,6 +5,7 @@ import styles from '../styles/components/post.module.scss'
 import peopleImg from '../assets/image/people.jpeg'
 import { Button } from './Button'
 import { useState } from 'react'
+import {BiUserCircle} from 'react-icons/bi'
 
 
 export default function Post({createdAt,postContent, article}) {
@@ -110,14 +111,14 @@ export default function Post({createdAt,postContent, article}) {
                     <div  className={styles.footer}>
                         <ul className={styles.comment_container}>
                             <li className={styles.article__author_info}>
-                                <span className={styles.author_name}>Anna</span>
+                                <span className={styles.author_name}> <BiUserCircle size={'20px'} />Anna</span>
                                 <span className={styles.article_createdAt}>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                                 </span>
                             </li>
 
                             <li className={styles.article__author_info}>
                                 <span className={styles.author_name}>Anna</span>
-                                <span className={styles.article_createdAt}>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                <span className={styles.article_createdAt}>ipsum ullam beatae molestias. Dolor iusto optio veniam. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                                 </span>
                             </li>
                         </ul>
