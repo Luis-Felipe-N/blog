@@ -91,57 +91,59 @@
                     margin-bottom: .7rem;
                 }
             }
+            .footer {
+                display: flex;
+                gap: 1rem;
+                flex-direction: column;
+    
+                textarea {
+                    margin-top: 1.7rem;
+                    min-height: 100px;
+                    resize: none;
+                    padding: .8rem;
+                    border: 2px solid rgba(0, 0, 0, 0.3);
+                    border-radius: 5px;
+                    font-size: 16px;
+                    font-weight: 500;
+                    font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+                }
+    
+                button {
+                    color: white;
+                    background-color: $color-primary;
+                    transition: .2s;
+    
+                    &:hover {
+                        filter: brightness(.8);
+                    }
+                }
+    
+                .comment_container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2rem;
+                }
+    
+                .article__author_info {
+                    display: flex;
+                    flex-direction: column;
+                    gap: .2rem;
+    
+                    .author_name {
+                        font-size: 18px;
+                        font-weight: 600;
+                        color: $color-primary;
+                    }
+    
+                    .article_createdAt{
+                        font-size: 14px;
+                        font-weight: 600;
+                        color: rgba(0, 0, 0, 0.6)
+                    }
+                }
+            }
         }
         
-        .footer {
-            display: flex;
-            gap: 1rem;
-            flex-direction: column;
-
-            textarea {
-                resize: none;
-                padding: .8rem;
-                border: 2px solid rgba(0, 0, 0, 0.3);
-                border-radius: 5px;
-                font-size: 16px;
-                font-weight: 500;
-                font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-            }
-
-            button {
-                color: white;
-                background-color: $color-primary;
-                transition: .2s;
-
-                &:hover {
-                    filter: brightness(.8);
-                }
-            }
-
-            .comment_container {
-                display: flex;
-                flex-direction: column;
-                gap: 2rem;
-            }
-
-            .article__author_info {
-                display: flex;
-                flex-direction: column;
-                gap: .2rem;
-
-                .author_name {
-                    font-size: 18px;
-                    font-weight: 600;
-                    color: $color-primary;
-                }
-
-                .article_createdAt{
-                    font-size: 14px;
-                    font-weight: 600;
-                    color: rgba(0, 0, 0, 0.6)
-                }
-            }
-        }
     }
 }
 
