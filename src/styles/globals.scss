@@ -28,3 +28,9 @@ li .active {
       transition: .2s;
   }
 }
+
+@media (max-width: 824px) {
+  body {
+    overflow: hidden;
+  }
+}
