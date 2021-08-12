@@ -65,6 +65,7 @@ export default function Post({createdAt,postContent, article}) {
                                 if(item.imagem[0]) {
                                     return (
                                         <Image
+                                            alt={item.alt}
                                             key={item.id}
                                             className={styles.img}
                                             src={item.imagem[0].url}

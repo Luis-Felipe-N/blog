@@ -6,6 +6,7 @@ import useAuth from '../hooks/useAuth'
 import { useEffect, useState } from 'react'
 import { useClickOutSide } from '../hooks/useClickOutSide'
 import {RiUserSmileLine} from 'react-icons/ri'
+import { Router } from 'react-router-dom'
 
 export default function Header() {
     const [ menuIsOpen, setMenuIsOpen ] = useState(false)
@@ -26,7 +27,7 @@ export default function Header() {
             const elem = document.querySelector('[data-menu-user]')
             clickOutSide(elem, menuUserIsOpen, setMenuUserIsOpen)
         }
-    }, [menuIsOpen, menuUserIsOpen])
+    }, [menuIsOpen, menuUserIsOpen, clickOutSide])
 
 
     const handleLogOutUser = () => {
@@ -41,7 +42,7 @@ export default function Header() {
                     <h1 className={styles.logo} >BlogTech</h1>
                 </a>
             </Link>
-            <nav className={styles.menu} className={menuIsOpen ? `${styles.menu} ${styles.active}` : styles.menu}>
+            <nav className={menuIsOpen ? `${styles.menu} ${styles.active}` : styles.menu}>
                 <ul data-menu className={menuIsOpen ? styles.active : ''}>
                     <li>
                         <NavLink to="/">
@@ -77,9 +78,7 @@ export default function Header() {
 
                             </>)
                             : 
-                            (<Link href="/login">
-                            <Button>Login</Button>
-                             </Link>)
+                            <Button onClick={()=> {Router.push("/login")}}>Login</Button>
                         }
                     </li>
                 </ul>
