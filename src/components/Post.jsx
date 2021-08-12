@@ -128,8 +128,8 @@ export default function Post({createdAt,postContent, article}) {
                             }
                         }}
 
-                        onKeyUp={({code}) => {
-                            if ( code === "Backspace" && comment.length === 100 ) {
+                        onInput={(e) => {
+                            if ( e.nativeEvent.inputType === "deleteContentBackward" && comment.length === 100 ) {
                                 setComment(comment.slice(0 , -1))
                             }
                         }}
