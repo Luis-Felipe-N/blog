@@ -8,7 +8,7 @@ import { Button } from '../components/Button'
 import useAuth from '../hooks/useAuth'
 
 
-export default function singup() {
+export default function Singup() {
     const [ email, setEmail ] = useState()
     const [ senha, setSenha ] = useState()
     const [ userName, setUserName ] = useState()

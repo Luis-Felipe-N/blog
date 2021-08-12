@@ -45,8 +45,6 @@ export default function Home({headline, posts}) {
                                 const title = postcontent.filter( item => item._modelApiKey === 'title').map(item => item.titulo)
                                 const thumb = postcontent.filter( item => item._modelApiKey === 'thumb').map(item => item.thumb)[0]
                                 return (
-                                    // console.log(thumb)
-                                    <>
                                     <Card
                                         key={id}
                                         idPost={id}
@@ -54,7 +52,6 @@ export default function Home({headline, posts}) {
                                         author={author}
                                         thumb={thumb}
                                     />
-                                    </>
                                 )
                             })
                         )

@@ -1,4 +1,3 @@
-import { useRouter } from 'next/dist/client/router'
 import Link from 'next/link'
 import styles from '../styles/components/Header.module.scss'
 import { Button } from './Button'
@@ -6,14 +5,15 @@ import NavLink from './NavLink'
 import useAuth from '../hooks/useAuth'
 import { useEffect, useState } from 'react'
 import { useClickOutSide } from '../hooks/useClickOutSide'
+import {BiUserCircle} from 'react-icons/bi'
 
 export default function Header() {
-    const [ modalIsOpen, setModalIsOpen ] = useState(false);
     const [ menuIsOpen, setMenuIsOpen ] = useState(false)
 
     const clickOutSide = useClickOutSide()
 
-    const { singInEmailPassword } = useAuth()
+    const { user, logOut } = useAuth()
+
 
     useEffect(() => {
         if (menuIsOpen) {
@@ -21,7 +21,13 @@ export default function Header() {
             console.log(elem)
             clickOutSide(elem, menuIsOpen, setMenuIsOpen)
         }
-    }, [])
+    }, [menuIsOpen])
+
+
+    const handleLogOutUser = () => {
+        logOut()
+    }
+
 
     return (
         <header className={styles.header}>
@@ -31,7 +37,7 @@ export default function Header() {
                 </a>
             </Link>
             <nav className={styles.menu}>
-                <ul data-menu className={menuIsOpen && styles.active}>
+                <ul data-menu className={menuIsOpen ? styles.active : ''}>
                     <li>
                         <NavLink to="/">
                             Home
@@ -39,28 +45,34 @@ export default function Header() {
                     </li>
                     <li>
                         <NavLink to="/sobre">
-                            Sobre
+                            HTML/CSS
                         </NavLink>
                     </li>
                     <li>
                     <NavLink to="/Política">
-                            Política
+                            JAVASCRIPT
                         </NavLink>
                     </li>
                     <li>
                     <NavLink to="/posts">
-                            Posts
+                            FRAMEWORK
                         </NavLink>
                     </li>
                     <li>
-                        <Link href='/login'>
+
+                        {
+                            user ?
+                            <Button onClick={handleLogOutUser}>Log Out</Button>
+                            : 
+                            (<Link href="/login">
                             <Button>Login</Button>
-                        </Link>
+                             </Link>)
+                        }
                     </li>
                 </ul>
             </nav>
             <Button data-menu-mobile onClick={()=>setMenuIsOpen(!menuIsOpen)}>
-                Menu
+                    Menu
             </Button>
         </header>
     )

@@ -18,8 +18,7 @@ export default function Card({idPost, title, thumb, author}) {
                 />
                 <div className={styles.card_footer}>
                     <h1 className={styles.title}>
-                    Mudanças recentes no clima causadas pelo homem não têm precedentes, aponta relatório da ONU.
-
+                        {title}
                     </h1>
                     <div className={styles.info}>
                         <Image 

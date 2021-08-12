@@ -46,17 +46,16 @@ export default function Post({createdAt,postContent, article}) {
                             if (item._modelApiKey === 'image') {
                                 if(item.video) {
                                     return (
-                                        // <iframe
-                                        //     key={item.id}
-                                        //     // width="700"
-                                        //     height="300" 
-                                        //     src={`https://www.youtube.com/embed/${item.video?.providerUid}`}
-                                        //     title="YouTube video player" 
-                                        //     frameBorder="0" 
-                                        //     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        //     allowFullScreen>
-                                        // </iframe>
-                                        <div>video</div>
+                                        <iframe
+                                            key={item.id}
+                                            // width="700"
+                                            height="300" 
+                                            src={`https://www.youtube.com/embed/${item.video?.providerUid}`}
+                                            title="YouTube video player" 
+                                            frameBorder="0" 
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen>
+                                        </iframe>
                                     )
                                 }
                             }
@@ -123,15 +122,15 @@ export default function Post({createdAt,postContent, article}) {
                             </li>
                         </ul>
                         <textarea
-                        // onChange={({target}) => {
-                        //     if (comment.length < 100) {
-                        //         setComment(target.value)
-                        //     }
-                        // }}
-                        onKeyUp={(e)=>{
-                            console.log(e)
+                        onChange={({target}) => {
                             if (comment.length < 100) {
                                 setComment(target.value)
+                            }
+                        }}
+
+                        onKeyUp={({code}) => {
+                            if ( code === "Backspace" && comment.length === 100 ) {
+                                setComment(comment.slice(0 , -1))
                             }
                         }}
                         value={comment}
