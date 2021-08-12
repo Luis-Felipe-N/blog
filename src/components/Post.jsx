@@ -138,7 +138,7 @@ export default function Post({createdAt,postContent, article}) {
                         placeholder="Deixe seu comentário!"
                          />
                          <p>100/{comment.length}</p>
-                         <Button style={{color: 'white', backgroundColor: '#1669E6'}}>Enviar</Button>
+                         <Button isInverse>Enviar</Button>
                     </div>
                 </div>
             </div>

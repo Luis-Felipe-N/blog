@@ -1,7 +1,7 @@
 @import '../utils/variables.scss';
 
 .button {
-    padding: 1rem 48px;
+    padding: .8rem 40px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -9,6 +9,23 @@
     font-weight: 600;
     transition: .2s;
     color: $color-primary;
+    background-color: white;
+
+    &:hover {
+        filter: brightness(.8);
+    }
+}
+
+.button_inverse {
+    padding: 1rem 48px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: .2s;
+    color: white;
+    background-color: $color-primary;
 
     &:hover {
         filter: brightness(.8);

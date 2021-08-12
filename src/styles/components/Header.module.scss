@@ -1,11 +1,11 @@
 @import '../utils/variables.scss';
+@import '../utils/mixins.scss';
 
 .header {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include center-sb;
     padding: 1rem 5%;
-    height: 90px;
+    height: 70px;
     position: sticky;
     top: 0;
     z-index: 2;
@@ -22,15 +22,65 @@
     }
 
     .menu ul {
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include center;
         list-style: none;
 
+        .menu_profile  {
+            position: relative;
+
+            button {margin: 0;}
+
+            .button_icon {
+                cursor: pointer;
+                background-color: transparent;
+                border: 0;
+                border-radius: 100%;
+            }
+            
+            .menu_user {
+                display: none;
+            }
+
+            .menu_user.active{
+                display: flex;
+                animation: animaTop .2s forwards;
+                width: 140px;
+                overflow: hidden;
+                background-color: #fff;
+                box-shadow: 0 0 20px rgb(0, 0, 0, 0.2);
+                flex-direction: column;
+                
+
+                border-radius: 5px;
+
+                position: absolute;
+                top: 3rem;
+                right: 0;
+
+                li {
+                    &:first-child {
+                        padding: .7rem;
+                    }
+                
+                    width: 100%;
+
+                    button {
+                        border-radius:0;
+                        width: 100%;
+                        padding: .7rem;
+                        cursor: pointer;
+                        height: 100%;
+                                         
+                    }
+                }
+            }
+        }
+
         li a {
+            text-transform: uppercase;
             color: #fff;
             font-weight: 500;
+            font-size: 14px;
             padding: 1rem 1.7rem;
             position: relative;
 
@@ -60,6 +110,7 @@
             margin-left: 2rem;
         }
     }
+
 }
 
 @media (max-width: 824px) {
@@ -74,7 +125,7 @@
             right: -100%;
             background-color: white;
             flex-direction: column;
-            gap: 4rem;
+            gap: 2rem;
             transition: .2s;
             display: none;
             
@@ -102,11 +153,39 @@
             right: 0;
             display: flex;
 
+            .menu_profile {
+                @include center;
+                flex-direction: column;
+                width: 100%;
+
+                .button_icon{
+                    svg {
+                        color: $color-primary !important;
+                    }
+                }
+
+                .menu_user {
+                    gap: 0;
+                    position: static;
+                    height: 100%;
+                    transform: translateX(0);
+                    margin-top: 1rem;
+                }
+            }
+
         }
         
-        .menu ul.active + [data-menu-mobile] {
-            border: 2px solid $color-primary;
+        .menu.active + [data-menu-mobile] {
+            box-shadow: 0 0 0 2px  $color-primary;
         }
 
+    }
+}
+
+@keyframes animaTop {
+    to {
+        top: 3rem;
+    } from {
+        top:2rem;
     }
 }

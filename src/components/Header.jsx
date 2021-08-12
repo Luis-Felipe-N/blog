@@ -5,10 +5,11 @@ import NavLink from './NavLink'
 import useAuth from '../hooks/useAuth'
 import { useEffect, useState } from 'react'
 import { useClickOutSide } from '../hooks/useClickOutSide'
-import {BiUserCircle} from 'react-icons/bi'
+import {RiUserSmileLine} from 'react-icons/ri'
 
 export default function Header() {
     const [ menuIsOpen, setMenuIsOpen ] = useState(false)
+    const [ menuUserIsOpen, setMenuUserIsOpen ] = useState(false)
 
     const clickOutSide = useClickOutSide()
 
@@ -18,10 +19,14 @@ export default function Header() {
     useEffect(() => {
         if (menuIsOpen) {
             const elem = document.querySelector('[data-menu]')
-            console.log(elem)
             clickOutSide(elem, menuIsOpen, setMenuIsOpen)
         }
-    }, [menuIsOpen])
+
+        if (menuUserIsOpen) {
+            const elem = document.querySelector('[data-menu-user]')
+            clickOutSide(elem, menuUserIsOpen, setMenuUserIsOpen)
+        }
+    }, [menuIsOpen, menuUserIsOpen])
 
 
     const handleLogOutUser = () => {
@@ -36,7 +41,7 @@ export default function Header() {
                     <h1 className={styles.logo} >BlogTech</h1>
                 </a>
             </Link>
-            <nav className={styles.menu}>
+            <nav className={styles.menu} className={menuIsOpen ? `${styles.menu} ${styles.active}` : styles.menu}>
                 <ul data-menu className={menuIsOpen ? styles.active : ''}>
                     <li>
                         <NavLink to="/">
@@ -58,11 +63,19 @@ export default function Header() {
                             FRAMEWORK
                         </NavLink>
                     </li>
-                    <li>
-
+                    <li  className={styles.menu_profile}>
                         {
                             user ?
-                            <Button onClick={handleLogOutUser}>Log Out</Button>
+                            (<>
+                                <button className={styles.button_icon} onClick={()=>setMenuUserIsOpen(!menuUserIsOpen)}>
+                                    <RiUserSmileLine size="2.5rem" color="white"/>
+                                </button>
+                                <ul data-menu-user className={menuUserIsOpen ? `${styles.menu_user} ${styles.active}` : styles.menu_user} >
+                                    <li>{user.name}</li>
+                                    <li><Button onClick={handleLogOutUser} isInverse>Logout</Button></li>
+                                </ul>
+
+                            </>)
                             : 
                             (<Link href="/login">
                             <Button>Login</Button>
