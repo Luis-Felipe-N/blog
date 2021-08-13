@@ -14,13 +14,9 @@ export default function Home({headline, posts}) {
 
 
     useEffect(() => {
-        console.log(process.env.NEXT_PUBLIC_TESTE)
-        const getPostPage = async () => {
-            const data = await getPost(51305157)
-            console.log(data)
-        }
-        getPostPage()
-    }, [])
+        console.log(headline.id)
+        
+    }, [headline])
 
 
     return (
@@ -33,7 +29,7 @@ export default function Home({headline, posts}) {
             <Header />
             <main className={styles.main}>
                 {
-                    headline && <Post createdAt={headline.createdAt} postContent={headline.postcontent} />
+                    headline && <Post idPost={headline.id} createdAt={headline.createdAt} postContent={headline.postcontent} />
                 }
                 <section className={styles.more_content}>
                     <h2>Continue lendo:</h2>
@@ -68,6 +64,7 @@ export async function getStaticProps() {
     const response = await getAllPost()
     const posts = response.allPosts
     const headline = response.allPosts[0]
+    console.log(headline)
 
     return {
         props: {

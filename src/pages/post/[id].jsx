@@ -28,7 +28,7 @@ export default function PostPost() {
             {
                 post && (
                     <>
-                        <Post createdAt={post.createdAt} postContent={post.postcontent} />
+                        <Post idPost={post.id} createdAt={post.createdAt} postContent={post.postcontent} />
                         <Head>
                             <title>
                             {

@@ -1,18 +1,71 @@
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
-import styles from '../styles/components/post.module.scss'
+import { Button } from './Button'
+
+import useAuth from '../hooks/useAuth'
+import formatCreatedAt from './utils/formatCreatedAt'
 
 import peopleImg from '../assets/image/people.jpeg'
-import { Button } from './Button'
-import { useState } from 'react'
-import {BiUserCircle} from 'react-icons/bi'
+import { BiUserCircle } from 'react-icons/bi'
+
+import styles from '../styles/components/post.module.scss'
+import { db } from '../lib/firebase'
 
 
-export default function Post({createdAt,postContent, article}) {
+export default function Post({idPost, createdAt,postContent}) {
     const [ comment, setComment ] = useState('')
+    const [ comments, setComments ] = useState([])
+
 
     const datePublic = createdAt.split('T')[0].split('-').reverse().join('/')
     const hourCreate = createdAt.split('T')[1]
+
+    const {user} = useAuth()
+
+    useEffect(() => {
+        const ref = db.ref(`comments/${idPost}`)
+
+        ref.on('value', (snapshot) => {
+            const data = snapshot.val()
+            if (data) {
+                const arrData = Object.entries(data).map(([key, comment]) => {
+                    return {
+                        idComment: key,
+                        comment
+                    }
+                })
+                // console.log(arrData)
+                setComments(arrData)
+            }
+        })
+    }, [])
+
+    
+    useEffect(() => {
+        // console.log([...comments, {content: 'tetsfs'}])
+    }, [comments])
+
+ 
+    async function handleNewComment(e, id) {
+        e.preventDefault()
+        if ( id ) {
+            const parsedCommet = {
+                content: comment,
+                author: user,
+                idPost: idPost
+            }
+        } else {
+            const parsedCommet = {
+                content: comment,
+                author: user,
+                createdAt:'fs'
+            }
+            
+            await db.ref(`comments/${idPost}`).push(parsedCommet)
+        }
+    }
+
 
     return (
         <>
@@ -110,36 +163,58 @@ export default function Post({createdAt,postContent, article}) {
                         <h1>Cometários</h1>
                     </header>
                     <div  className={styles.footer}>
-                        <ul className={styles.comment_container}>
-                            <li className={styles.article__author_info}>
+                        <ul className={styles.comments}>
+                            {/* <li data-key="1223" className={styles.article__author_info}>
                                 <span className={styles.author_name}> <BiUserCircle size={'20px'} />Anna</span>
                                 <span className={styles.article_createdAt}>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                                 </span>
+                                <form onSubmit={ (e) => {handleNewComment(e, 1223)}}>
+                                <input onChange={({target}) => {
+                                if (comment.length < 100) {
+                                    setComment(target.value)
+                                }
+                            }} className="input" type="text" />
+                                <Button>enviar</Button>
+                                </form>
                             </li>
 
-                            <li className={styles.article__author_info}>
+                            <li data-key="1223" className={styles.article__author_info}>
                                 <span className={styles.author_name}>Anna</span>
                                 <span className={styles.article_createdAt}>ipsum ullam beatae molestias. Dolor iusto optio veniam. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                                 </span>
-                            </li>
+                            </li> */}
+                            {
+                                comments ? (
+                                    comments.map( ({idComment, comment}) => (
+                                    <li className={styles.comment} key={idComment}>
+                                        <span className={styles.author_name}><BiUserCircle size={'20px'}/>{comment.author.name}</span>
+                                        <span className={styles.content}>{comment.content}</span>
+                                        <span className={styles.createdAt}>{formatCreatedAt(comment.createdAt)}</span>
+                                    </li>
+                                    ))
+                                ) : <li>Não há comentárias. Seja o primeiro a comentar!</li>
+                                
+                            }
                         </ul>
-                        <textarea
-                        onChange={({target}) => {
-                            if (comment.length < 100) {
-                                setComment(target.value)
-                            }
-                        }}
+                        <form onSubmit={handleNewComment}>
+                            <textarea
+                            onChange={({target}) => {
+                                if (comment.length < 200) {
+                                    setComment(target.value)
+                                }
+                            }}
 
-                        onInput={(e) => {
-                            if ( e.nativeEvent.inputType === "deleteContentBackward" && comment.length === 100 ) {
-                                setComment(comment.slice(0 , -1))
-                            }
-                        }}
-                        value={comment}
-                        placeholder="Deixe seu comentário!"
-                         />
-                         <p>100/{comment.length}</p>
-                         <Button isInverse>Enviar</Button>
+                            onInput={(e) => {
+                                if ( e.nativeEvent.inputType === "deleteContentBackward" && comment.length >= 200 ) {
+                                    setComment(comment.slice(0 , -1))
+                                }
+                            }}
+                            value={comment}
+                            placeholder="Deixe seu comentário!"
+                            />
+                            <p>200/{comment.length}</p>
+                            <Button type="submit" isInverse>Enviar</Button>
+                        </form>
                     </div>
                 </div>
             </div>

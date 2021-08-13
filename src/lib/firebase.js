@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 
 import 'firebase/auth'
 import 'firebase/firestore'
+import 'firebase/database'
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -15,6 +16,7 @@ if (!firebase.apps.length) {
 }
 
 const auth = firebase.auth()
+const db = firebase.database()
 const db_firestore = firebase.firestore()
 
-export { auth, db_firestore }
+export { auth, db_firestore, db }
