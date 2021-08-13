@@ -109,15 +109,15 @@
                         font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
                     }
         
-                    button {
-                        color: white;
-                        background-color: $color-primary;
-                        transition: .2s;
+                    // button {
+                    //     color: white;
+                    //     background-color: $color-primary;
+                    //     transition: .2s;
         
-                        &:hover {
-                            filter: brightness(.8);
-                        }
-                    }
+                    //     &:hover {
+                    //         filter: brightness(.8);
+                    //     }
+                    // }
                 }
     
                 .comments {

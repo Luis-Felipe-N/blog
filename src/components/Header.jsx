@@ -6,7 +6,7 @@ import useAuth from '../hooks/useAuth'
 import { useEffect, useState } from 'react'
 import { useClickOutSide } from '../hooks/useClickOutSide'
 import {RiUserSmileLine} from 'react-icons/ri'
-import { Router } from 'react-router-dom'
+import Router from 'next/router'
 
 export default function Header() {
     const [ menuIsOpen, setMenuIsOpen ] = useState(false)
@@ -32,6 +32,7 @@ export default function Header() {
 
     const handleLogOutUser = () => {
         logOut()
+        setMenuUserIsOpen(false)
     }
 
 

@@ -12,13 +12,6 @@ import styles from '../styles/Home.module.scss'
 
 export default function Home({headline, posts}) {
 
-
-    useEffect(() => {
-        console.log(headline.id)
-        
-    }, [headline])
-
-
     return (
         <>
             <Head>
@@ -64,7 +57,7 @@ export async function getStaticProps() {
     const response = await getAllPost()
     const posts = response.allPosts
     const headline = response.allPosts[0]
-    console.log(headline)
+    // console.log(headline)
 
     return {
         props: {

@@ -11,8 +11,13 @@
     color: $color-primary;
     background-color: white;
 
-    &:hover {
-        filter: brightness(.8);
+    &:not(:disabled) {
+        &:hover {
+            filter: brightness(.8);
+        }
+    }
+    &:disabled{
+        filter: brightness(.6);
     }
 }
 
@@ -27,7 +32,15 @@
     color: white;
     background-color: $color-primary;
 
-    &:hover {
-        filter: brightness(.8);
+    &:disabled{
+        filter: brightness(.6);
     }
+
+    &:not(:disabled) {
+        &:hover {
+            filter: brightness(.8);
+        }
+    }
+
+    // &:n
 }

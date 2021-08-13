@@ -42,27 +42,30 @@ export default function Post({idPost, createdAt,postContent}) {
     }, [])
 
     
-    useEffect(() => {
-        // console.log([...comments, {content: 'tetsfs'}])
-    }, [comments])
+    // useEffect(() => {
+        
 
  
     async function handleNewComment(e, id) {
         e.preventDefault()
-        if ( id ) {
-            const parsedCommet = {
-                content: comment,
-                author: user,
-                idPost: idPost
+        if (comment) {
+            if ( id ) {
+                const parsedCommet = {
+                    content: comment,
+                    author: user,
+                    idPost: idPost
+                }
+            } else {
+                const dataCreatedcomment = new Date()
+                console.log(dataCreatedcomment)
+                const parsedCommet = {
+                    content: comment,
+                    author: user,
+                    createdAt: Date.parse(dataCreatedcomment)
+                }
+                
+                await db.ref(`comments/${idPost}`).push(parsedCommet)
             }
-        } else {
-            const parsedCommet = {
-                content: comment,
-                author: user,
-                createdAt:'fs'
-            }
-            
-            await db.ref(`comments/${idPost}`).push(parsedCommet)
         }
     }
 
@@ -213,7 +216,7 @@ export default function Post({idPost, createdAt,postContent}) {
                             placeholder="Deixe seu comentário!"
                             />
                             <p>200/{comment.length}</p>
-                            <Button type="submit" isInverse>Enviar</Button>
+                            <Button disabled={comment.length && user?.name ? false : true} type="submit" isInverse>Enviar</Button>
                         </form>
                     </div>
                 </div>

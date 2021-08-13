@@ -13,6 +13,7 @@ export default function Login() {
     const [ senha, setSenha ] = useState()
     const [ errorEmail, setErrorEmail ] = useState()
     const [ errorSenha, setErrorSenha ] = useState()
+    const [ loading, setLoaging ] = useState()
 
 
     const {singInEmailPassword} = useAuth()
@@ -20,10 +21,12 @@ export default function Login() {
     async function handleSingIn(e) {
         e.preventDefault()
 
+        setLoaging(true)
         const response = await singInEmailPassword(email, senha)
         
         if ( response.sucess ) {
             Router.push('/')
+            return
         } else {
             if( response.code === 'password' ) {
                 setErrorSenha(response.message)
@@ -35,6 +38,8 @@ export default function Login() {
                 return
             }
         }
+
+        setLoaging(false)
 
     }
 
@@ -75,7 +80,7 @@ export default function Login() {
                     />
                     {errorSenha && <p className="erro">{errorSenha}</p>}
                 </label>
-                <Button>Entrar</Button>
+                <Button>{loading ? 'Carregando...' : 'Entrar'}</Button>
                 <p>Não tem uma conta?<Link href="/singup">Cadastre-se</Link></p>
             </form>
        </Sing>

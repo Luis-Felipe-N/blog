@@ -1,4 +1,17 @@
 export default function formatCreatedAt(data) {
     const dataAtual = new Date()
-    console.log(Date.parse(dataAtual))
+    const dataEmSegundos = Date.parse(dataAtual)
+    const tempoPublicado = dataEmSegundos - data
+    const tresHoras = 60 * 60 * 3 * 1000
+    const dataDaPublicação = new Date(tempoPublicado + tresHoras)
+
+    if ( dataDaPublicação.getDate() > 1 ) {
+        return `Há ${dataDaPublicação.getDate() - 1} dias`
+    } else if ( dataDaPublicação.getHours() > 0 ) {
+        return `Há ${dataDaPublicação.getHours()} horas`
+    } else if ( dataDaPublicação.getMinutes() > 0 ) {
+        return `Há ${dataDaPublicação.getMinutes() } minutos`
+    } else {
+        return `Há ${dataDaPublicação.getSeconds()} segundos`
+    }
 }
