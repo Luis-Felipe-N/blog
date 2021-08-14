@@ -88,7 +88,7 @@ export default function Post({idPost, createdAt,postContent}) {
                     <h5 className={styles.autor}>Por {postContent.filter( item => item._modelApiKey === 'author').map(item => item.nome)}</h5>
                     <div className={styles.header__bottom}>
                         {
-                            createdAt &&  <p className={styles.date}>{datePublic} {hourCreate}</p>
+                            createdAt &&  <p className={styles.date}>{formatCreatedAt(Date.parse(createdAt))}</p>
                         }
                         <div>
                             <span>Facebook</span>

@@ -1,10 +1,10 @@
 import Header from "../components/Header";
 
-export default function Sobre() {
+export default function Posts() {
     return (
         <>
         <Header/>
-        <div>sobre</div>
+        <div>Posts</div>
         </>
     )
 }
