@@ -1,0 +1,15 @@
+@import '../utils/mixins.scss';
+
+.main {
+    width: 100vw;
+    min-height: calc(90px - 100vh);
+    @include center;
+    flex-direction: column;
+    padding: 1rem 5%;
+
+    .not_commnets {
+        margin-top: 2rem;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+}

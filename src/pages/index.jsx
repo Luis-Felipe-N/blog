@@ -58,7 +58,7 @@ export async function getStaticProps() {
     const posts = response.allPosts
     const headline = response.allPosts[0]
 
-    if (!headline) {
+    if (!posts[0].postcontent) {
         return {
             redirect: {
                 destination: '/404',

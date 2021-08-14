@@ -6,7 +6,7 @@ import { Button } from './Button'
 import useAuth from '../hooks/useAuth'
 import formatCreatedAt from '../utils/formatCreatedAt'
 
-import notcomments from '../assets/image/notcomments.svg'
+// import notcomments from '../assets/image/notcomments.svg'
 
 import { RiDeleteBin2Line } from 'react-icons/ri'
 
@@ -152,7 +152,7 @@ export default function Post({idPost, createdAt,postContent}) {
                                 !comments.length ? (
                                     <>
                                         <Image  
-                                            src={notcomments}
+                                            src="/notcomments.svg"
                                             alt="Ainda não há comentátarios"
                                             width={300}
                                             height={150}

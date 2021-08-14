@@ -50,10 +50,19 @@ export default function Header() {
                             Home
                         </NavLink>
                     </li>
-                    
                     <li>
-                    <NavLink to="/posts">
-                            post
+                    <NavLink to="/categories/html">
+                            html
+                        </NavLink>
+                    </li>
+                    <li>
+                    <NavLink to="/categories/css">
+                            css
+                        </NavLink>
+                    </li>
+                    <li>
+                    <NavLink to="/categories/javascript">
+                            JavaScript
                         </NavLink>
                     </li>
                     <li  className={styles.menu_profile}>
