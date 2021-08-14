@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import Router from 'next/router'
 
 import styles from '../styles/components/card.module.scss'

@@ -57,13 +57,20 @@ export async function getStaticProps() {
     const response = await getAllPost()
     const posts = response.allPosts
     const headline = response.allPosts[0]
-    // console.log(headline)
 
+    if (!headline) {
+        return {
+            redirect: {
+                destination: '/404',
+                permanent: false,
+              },
+        }
+    }
     return {
         props: {
             headline,
             posts
         },
-        // revalidate: 100
+        revalidate: 60
     }
 }
