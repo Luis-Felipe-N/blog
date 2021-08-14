@@ -65,33 +65,45 @@ export function AuthProvider({children}) {
                     message: 'Senha incorreta!'
                 }
             }
-
-            console.log(error.code)
-
-            // return {
-            //     error
-            // }
         }
     }
 
     const createAcount = async (username, email, senha) => {
 
-        const response = await auth.createUserWithEmailAndPassword(email, senha)
-        console.log(response)
+        try {
+            const response = await auth.createUserWithEmailAndPassword(email, senha)
+            console.log(response)
 
-        if (response.user) {
-            const { uid } = response.user 
+            if (response.user.uid) {
+                const { uid } = response.user 
 
-            await db_firestore.collection('users').doc(uid).set({userName: username})
+                await db_firestore.collection('users').doc(uid).set({userName: username})
 
-            const userName = await db_firestore.collection('users').doc(uid).get()
+                const userName = await db_firestore.collection('users').doc(uid).get()
 
-            setUser({
-                uid: uid,
-                name: userName.data().userName
-            })
+                setUser({
+                    uid: uid,
+                    name: userName.data().userName
+                })
+
+                return {
+                    sucess: true
+                }
+            } 
+        } catch (erro) {
+            console.log(erro)
+            if (erro.code === 'auth/email-already-in-use') {
+                return {
+                    code: 'email' ,
+                    message: 'Usuário existente!'
+                }
+            } else if (erro.code === 'auth/weak-password') {
+                return {
+                    code: 'senha' ,
+                    message: 'Senha muito curta!'
+                }
+            }
         }
-
     }
 
     return (<AuthContext.Provider value={{singInEmailPassword, createAcount, logOut, user}}>

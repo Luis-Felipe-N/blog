@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react'
 import { Button } from './Button'
 
 import useAuth from '../hooks/useAuth'
-import formatCreatedAt from './utils/formatCreatedAt'
+import formatCreatedAt from '../utils/formatCreatedAt'
 
-import peopleImg from '../assets/image/people.jpeg'
-import { BiUserCircle } from 'react-icons/bi'
+import notcomments from '../assets/image/notcomments.svg'
+
+import { RiDeleteBin2Line } from 'react-icons/ri'
 
 import styles from '../styles/components/post.module.scss'
 import { db } from '../lib/firebase'
@@ -17,11 +18,11 @@ export default function Post({idPost, createdAt,postContent}) {
     const [ comment, setComment ] = useState('')
     const [ comments, setComments ] = useState([])
 
-
     const datePublic = createdAt.split('T')[0].split('-').reverse().join('/')
     const hourCreate = createdAt.split('T')[1]
 
     const {user} = useAuth()
+
 
     useEffect(() => {
         const ref = db.ref(`comments/${idPost}`)
@@ -35,15 +36,10 @@ export default function Post({idPost, createdAt,postContent}) {
                         comment
                     }
                 })
-                // console.log(arrData)
                 setComments(arrData)
             }
         })
-    }, [])
-
-    
-    // useEffect(() => {
-        
+    }, [])        
 
  
     async function handleNewComment(e, id) {
@@ -66,7 +62,14 @@ export default function Post({idPost, createdAt,postContent}) {
                 
                 await db.ref(`comments/${idPost}`).push(parsedCommet)
             }
+            setComment('')
         }
+
+    }
+
+
+    async function handleDeleteComment(idComment) {
+        await db.ref(`comments/${idPost}/${idComment}`).remove()
     }
 
 
@@ -136,67 +139,47 @@ export default function Post({idPost, createdAt,postContent}) {
                 </div>
             </div>
             <div className={styles.interaction_post}>
-                {/* {
-                    postContent.filter( item => item._modelApiKey === "article").map(item => {
-                        return (
-                        <article key={item.id} className={styles.article__author_box }>
-                            <header>
-                                <h1>Opinião do escritor</h1>
-                            </header>
-                            {
-                                <div className={styles.articleContent} dangerouslySetInnerHTML={{__html: item.articleContent}}></div>
-                            }
-                            <footer className={styles.footer}>
-                                <Image 
-                                    src={item.perfilImage.url}
-                                    alt="imagem de perfil do escritor"
-                                    width={80}
-                                    height={80}
-                                />
-                                <div className={styles.article__author_info}>
-                                    <span className={styles.author_name}>{item.name}</span>
-                                    <span className={styles.article_createdAt}>Hoje</span>
-                                </div>
-                            </footer>
-                        </article>)
-                    })
-                } */}
                 <div className={styles.comments_box}>
                     <header>
                         <h1>Cometários</h1>
                     </header>
                     <div  className={styles.footer}>
                         <ul className={styles.comments}>
-                            {/* <li data-key="1223" className={styles.article__author_info}>
-                                <span className={styles.author_name}> <BiUserCircle size={'20px'} />Anna</span>
-                                <span className={styles.article_createdAt}>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                </span>
-                                <form onSubmit={ (e) => {handleNewComment(e, 1223)}}>
-                                <input onChange={({target}) => {
-                                if (comment.length < 100) {
-                                    setComment(target.value)
-                                }
-                            }} className="input" type="text" />
-                                <Button>enviar</Button>
-                                </form>
-                            </li>
-
-                            <li data-key="1223" className={styles.article__author_info}>
-                                <span className={styles.author_name}>Anna</span>
-                                <span className={styles.article_createdAt}>ipsum ullam beatae molestias. Dolor iusto optio veniam. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                </span>
-                            </li> */}
                             {
-                                comments ? (
-                                    comments.map( ({idComment, comment}) => (
-                                    <li className={styles.comment} key={idComment}>
-                                        <span className={styles.author_name}><BiUserCircle size={'20px'}/>{comment.author.name}</span>
-                                        <span className={styles.content}>{comment.content}</span>
-                                        <span className={styles.createdAt}>{formatCreatedAt(comment.createdAt)}</span>
-                                    </li>
-                                    ))
-                                ) : <li>Não há comentárias. Seja o primeiro a comentar!</li>
-                                
+                                !comments.length ? (
+                                    <>
+                                        <Image  
+                                            src={notcomments}
+                                            alt="Ainda não há comentátarios"
+                                            width={300}
+                                            height={150}
+                                        />
+                                        <h3 className={styles.notcomments}>Ainda não há comentários</h3>
+                                    </>
+                                    )
+                                    : 
+                                    (
+                                        comments.map( ({idComment, comment}) => (
+                                            <li className={styles.comment} key={idComment}>
+                                                <span className={styles.author_name}>
+                                                    <span>
+                                                        {comment.author.name}
+                                                    </span>
+                                                    {
+                                                        user?.uid === comment.author.uid && (
+                                                        <button onClick={() => handleDeleteComment(idComment)}>
+                                                            <RiDeleteBin2Line
+                                                            size='20px'
+                                                            color='red'
+                                                             />
+                                                        </button>)
+                                                    }
+                                                </span>
+                                                <span className={styles.content}>{comment.content}</span>
+                                                <span className={styles.createdAt}>{formatCreatedAt(comment.createdAt)}</span>
+                                            </li>
+                                        ))
+                                    )
                             }
                         </ul>
                         <form onSubmit={handleNewComment}>

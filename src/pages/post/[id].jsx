@@ -15,7 +15,7 @@ export default function PostPost() {
     useEffect(() => {
         const getPostPage = async () => {
             const response = await getPost(idPost)
-            const headline = response.allPosts[0]
+            const headline = response?.allPosts[0]
             setPost(headline)
         }
 

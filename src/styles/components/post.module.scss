@@ -1,4 +1,5 @@
 @import '../utils/variables.scss';
+@import '../utils/mixins.scss';
 
 .post {
     padding: 1rem 5%;
@@ -108,46 +109,53 @@
                         font-weight: 500;
                         font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
                     }
-        
-                    // button {
-                    //     color: white;
-                    //     background-color: $color-primary;
-                    //     transition: .2s;
-        
-                    //     &:hover {
-                    //         filter: brightness(.8);
-                    //     }
-                    // }
                 }
     
                 .comments {
                     display: flex;
                     flex-direction: column;
                     gap: 2rem;
-                }
-                .comment {
-                    display: flex;
-                    flex-direction: column;
-                    gap: .2rem;
-    
-                    .author_name {
-                        font-size: 18px;
-                        font-weight: 600;
-                        color: $color-primary;
-                        display: flex;
-                        align-items: center;
-                        gap: .2rem;
-                    }
-    
-                    .comment{
-                        font-size: 14px;
-                        font-weight: 600;
-                        color: rgba(0, 0, 0, 0.6)
+
+                    .notcomments {
+                        text-align: center;
                     }
                     
-                    .createdAt {
-                        font-size: 12px;
-                        color: rgba(0, 0, 0, 0.6)
+                    .comment {
+                        display: flex;
+                        flex-direction: column;
+                        gap: .2rem;
+    
+        
+                        .author_name {
+                            @include center-sb;
+                            font-size: 18px;
+                            font-weight: 600;
+                            color: $color-primary;
+                            display: flex;
+                            align-items: center;
+                            gap: .2rem;
+    
+                            button {
+                                padding: .3rem;
+                                border-radius: .2rem;
+                                border: 0;
+                                background-color: white;
+                                cursor: pointer;
+    
+                                @include hover;
+                            }
+                        }
+        
+                        .comment{
+                            font-size: 14px;
+                            font-weight: 600;
+                            color: rgba(0, 0, 0, 0.6)
+                        }
+                        
+                        .createdAt {
+                            font-size: 12px;
+                            color: rgba(0, 0, 0, 0.6)
+                        }
                     }
                 }
     

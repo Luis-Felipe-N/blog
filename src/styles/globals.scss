@@ -40,3 +40,30 @@ input {
   padding: 0 1rem;
   font-size: 15px;
 }
+
+.errorInput {
+  outline-color: red !important;
+  border: red 2px solid !important;
+  animation: .2s tremida;
+}
+
+.errorText {
+  text-align: left;
+  color: red;
+  font-size: 14px;
+}
+
+@keyframes tremida {
+  25% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(5px);
+  }
+}

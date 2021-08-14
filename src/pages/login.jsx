@@ -30,11 +30,13 @@ export default function Login() {
         } else {
             if( response.code === 'password' ) {
                 setErrorSenha(response.message)
+                setLoaging(false)
                 return
             }
 
             if( response.code === 'email' ) {
                 setErrorEmail(response.message)
+                setLoaging(false)
                 return
             }
         }
@@ -55,7 +57,9 @@ export default function Login() {
             <form onSubmit={handleSingIn}>
                 <label>
                     Email: 
-                    <input onChange={({target})=>{
+                    <input
+                        className={errorEmail && 'errorInput'}
+                        onChange={({target})=>{
                         setEmail(target.value)
                         setErrorEmail('')
                         }
@@ -64,12 +68,13 @@ export default function Login() {
                         placeholder="email@gmail.com"
                         type="email"
                     />
-                    {errorEmail && <p className="erro">{errorEmail}</p>}
+                    {errorEmail && <span className="errorText">{errorEmail}</span>}
                 </label>
 
                 <label>
                     Senha: 
                     <input
+                    className={errorSenha && 'errorInput'}
                         onChange={({target})=>{
                             setSenha(target.value)
                             setErrorSenha('')
@@ -78,10 +83,10 @@ export default function Login() {
                         placeholder="Senha123" 
                         type="password"
                     />
-                    {errorSenha && <p className="erro">{errorSenha}</p>}
+                    {errorSenha && <span className="errorText">{errorSenha}</span>}
                 </label>
                 <Button>{loading ? 'Carregando...' : 'Entrar'}</Button>
-                <p>Não tem uma conta?<Link href="/singup">Cadastre-se</Link></p>
+                <p>Não tem uma conta?<Link href="/singup"> Cadastre-se</Link></p>
             </form>
        </Sing>
     )
