@@ -28,10 +28,12 @@
         .menu_profile  {
             position: relative;
 
-            button {margin: 0;}
+            button {
+                margin: 0;
+                cursor: pointer;
+            }
 
             .button_icon {
-                cursor: pointer;
                 background-color: transparent;
                 border: 0;
                 border-radius: 100%;
@@ -68,7 +70,6 @@
                         border-radius:0;
                         width: 100%;
                         padding: .7rem;
-                        cursor: pointer;
                         height: 100%;
                                          
                     }
@@ -106,8 +107,9 @@
             }
         }
 
-        li button {
-            margin-left: 2rem;
+        .container_btns {
+            display: flex;
+            gap: .5rem;
         }
     }
 
@@ -137,12 +139,16 @@
                     background-color:  $color-primary;
                 }
             }
-            
-            li button {
-                margin-left: 0;
-                background-color: $color-primary;
-                color: white;
+
+            .container_btns {
+                flex-direction: column-reverse;
             }
+            
+            // li button {
+            //     margin-left: 0;
+            //     background-color: $color-primary;
+            //     color: white;
+            // }
         }
         
         [data-menu-mobile] {

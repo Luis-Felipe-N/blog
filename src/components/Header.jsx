@@ -50,19 +50,10 @@ export default function Header() {
                             Home
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/sobre">
-                            HTML/CSS
-                        </NavLink>
-                    </li>
-                    <li>
-                    <NavLink to="/Política">
-                            JAVASCRIPT
-                        </NavLink>
-                    </li>
+                    
                     <li>
                     <NavLink to="/posts">
-                            FRAMEWORK
+                            post
                         </NavLink>
                     </li>
                     <li  className={styles.menu_profile}>
@@ -79,7 +70,12 @@ export default function Header() {
 
                             </>)
                             : 
-                            <Button onClick={()=> {Router.push("/login")}}>Login</Button>
+                            <div className={styles.container_btns}>
+                                <Button isInverse onClick={()=> {Router.push("/login")}}>Login</Button>
+                                <Button onClick={()=> {Router.push("/singup")}}>Sing Up</Button>
+
+                            </div>
+
                         }
                     </li>
                 </ul>

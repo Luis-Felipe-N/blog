@@ -22,6 +22,11 @@ export default function Login() {
         e.preventDefault()
 
         setLoaging(true)
+        if (senha.lenght < 6) {
+            setErrorSenha('Senha muito curta!')
+            setLoaging(false)
+            return
+        }
         const response = await singInEmailPassword(email, senha)
         
         if ( response.sucess ) {
