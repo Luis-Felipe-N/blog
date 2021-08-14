@@ -36,7 +36,10 @@ export default function Post({idPost, createdAt,postContent}) {
                         comment
                     }
                 })
-                setComments(arrData)
+                setComments(arrData)    
+            } else {
+                setComments('')
+                return
             }
         })
     }, [])        
@@ -44,7 +47,7 @@ export default function Post({idPost, createdAt,postContent}) {
  
     async function handleNewComment(e, id) {
         e.preventDefault()
-        if (comment) {
+        if (comment.trim()) {
             if ( id ) {
                 const parsedCommet = {
                     content: comment,
