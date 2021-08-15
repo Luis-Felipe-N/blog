@@ -26,7 +26,7 @@ export default function Home({headline, posts}) {
                 <section className={styles.more_content}>
                     {
                         posts && (
-                            <SuggestedPosts posts={posts} category="css" />
+                            <SuggestedPosts createdAt={headline.createdAt} posts={posts} category="css" />
                         )
                     }
                 </section>

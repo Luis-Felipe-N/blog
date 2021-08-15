@@ -25,7 +25,7 @@ export function SuggestedPosts({posts, category}) {
         <h2 className={styles.more_posts}>Continue lendo:</h2>
         <div className={styles.container_card}>
             {   suggestedPosts &&
-                suggestedPosts.map( ({id, postcontent}) => {
+                suggestedPosts.map( ({createdAt, id, postcontent}) => {
                     const author = postcontent.filter( item => item._modelApiKey === 'author')[0]
                     const title = postcontent.filter( item => item._modelApiKey === 'title').map(item => item.titulo)
                     const thumb = postcontent.filter( item => item._modelApiKey === 'thumb').map(item => item.thumb)[0]
@@ -36,6 +36,7 @@ export function SuggestedPosts({posts, category}) {
                             title={title}
                             author={author}
                             thumb={thumb}
+                            createdAt={createdAt}
                         />
                     )
                 })

@@ -29,7 +29,7 @@ export default function Category({postsByCategory}) {
                     <div className={styles.container_post}>
                         <h1>Todos posts sobre {category}</h1>
                         {
-                            postsByCategory.map( ({id, postcontent}) => {
+                            postsByCategory.map( ({createdAt, id, postcontent}) => {
                                 const author = postcontent.filter( item => item._modelApiKey === 'author')[0]
                                 const title = postcontent.filter( item => item._modelApiKey === 'title').map(item => item.titulo)
                                 const thumb = postcontent.filter( item => item._modelApiKey === 'thumb').map(item => item.thumb)[0]
@@ -40,6 +40,7 @@ export default function Category({postsByCategory}) {
                                         title={title}
                                         author={author}
                                         thumb={thumb}
+                                        createdAt={createdAt}
                                     />
                                 )
                             })

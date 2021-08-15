@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Router from 'next/router'
 import { useEffect, useState } from 'react'
 
 import { Button } from './Button'
@@ -17,9 +18,6 @@ import { db } from '../lib/firebase'
 export default function Post({idPost, createdAt,postContent}) {
     const [ comment, setComment ] = useState('')
     const [ comments, setComments ] = useState([])
-
-    const datePublic = createdAt.split('T')[0].split('-').reverse().join('/')
-    const hourCreate = createdAt.split('T')[1]
 
     const {user} = useAuth()
 
@@ -47,7 +45,7 @@ export default function Post({idPost, createdAt,postContent}) {
  
     async function handleNewComment(e, id) {
         e.preventDefault()
-        if (comment.trim()) {
+        if (comment.trim() && user) {
             if ( id ) {
                 const parsedCommet = {
                     content: comment,
@@ -199,7 +197,11 @@ export default function Post({idPost, createdAt,postContent}) {
                             placeholder="Deixe seu comentário!"
                             />
                             <p>200/{comment.length}</p>
-                            <Button disabled={comment.length && user?.name ? false : true} type="submit" isInverse>Enviar</Button>
+                            {
+                                user ? (
+                                    <Button disabled={!comment.length} type="submit" isInverse>Enviar</Button>
+                                ) : <Button isInverse onClick={() => Router.push('/login')}>Login</Button>
+                            }
                         </form>
                     </div>
                 </div>

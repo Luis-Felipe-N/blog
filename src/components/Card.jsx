@@ -2,9 +2,10 @@ import Image from 'next/image'
 import Router from 'next/router'
 
 import styles from '../styles/components/card.module.scss'
+import formatCreatedAt from '../utils/formatCreatedAt'
 
 
-export default function Card({idPost, title, thumb, author}) {
+export default function Card({createdAt, idPost, title, thumb, author}) {
 
     function handleRedirectPagePost() {
         Router.push(`/post/${idPost}`)
@@ -32,7 +33,7 @@ export default function Card({idPost, title, thumb, author}) {
                     <div>
                         <div className={styles.article__author_info}>
                             <span className={styles.author_name}>{author.nome}</span>
-                            <span className={styles.article_createdAt}>Há 5 dias</span>
+                            <span className={styles.article_createdAt}>{formatCreatedAt(Date.parse(createdAt))}</span>
                         </div>
                     </div>
                 </div>
