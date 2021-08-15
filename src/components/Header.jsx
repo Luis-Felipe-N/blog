@@ -51,17 +51,17 @@ export default function Header() {
                         </NavLink>
                     </li>
                     <li>
-                    <NavLink to="/categories/html">
+                        <NavLink to="/categories/html">
                             html
                         </NavLink>
                     </li>
                     <li>
-                    <NavLink to="/categories/css">
-                            css
+                        <NavLink to="/categories/css">
+                                css
                         </NavLink>
                     </li>
                     <li>
-                    <NavLink to="/categories/javascript">
+                        <NavLink to="/categories/javascript">
                             JavaScript
                         </NavLink>
                     </li>

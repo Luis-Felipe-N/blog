@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import Head from 'next/head'
 
 import Header from "../../components/Header";
 import Card from "../../components/Card"
@@ -12,16 +13,21 @@ export default function Category({postsByCategory}) {
 
     const router = useRouter()
 
-    console.log()
+    const category = router.query.category ? router.query.category.toUpperCase() : ''
 
     return (
         <>
+        <Head>
+            <title>
+                BlogTech | {category}
+            </title>
+        </Head>
         <Header />
         <main className={styles.main}>
             {
                 postsByCategory && postsByCategory.length ? (
-                    <div>
-                        <h1>Principais posts sobre {router.query.category}</h1>
+                    <div className={styles.container_post}>
+                        <h1>Todos posts sobre {category}</h1>
                         {
                             postsByCategory.map( ({id, postcontent}) => {
                                 const author = postcontent.filter( item => item._modelApiKey === 'author')[0]
@@ -48,7 +54,7 @@ export default function Category({postsByCategory}) {
                             width={900}
                             height={350}
                         />
-                        {router.query.category && <h3 className={styles.not_commnets}>Ainda não há post sobre {router.query?.category.toUpperCase()}</h3>}
+                        {router.query.category && <h3 className={styles.not_commnets}>Ainda não há post sobre {category}</h3>}
                     </>
                 )
             }
@@ -66,7 +72,6 @@ export const getStaticPaths = () => {
 
 export const getStaticProps = async (context) => {
     const category = context.params.category
-    console.log(category)
     const response = await getAllPost()
     const posts = response.allPosts
     const postsByCategory = posts.filter( ({postcontent})  => postcontent.find((item) => item.categorias === category))

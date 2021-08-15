@@ -93,9 +93,6 @@ export default function Post({idPost, createdAt,postContent}) {
                         {
                             createdAt &&  <p className={styles.date}>{formatCreatedAt(Date.parse(createdAt))}</p>
                         }
-                        <div>
-                            <span>Facebook</span>
-                        </div>
                     </div>
                 </header>
                 

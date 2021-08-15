@@ -2,19 +2,23 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Head from 'next/head'
 
-import { getPost } from '../../lib/datocms'
+import { getAllPost, getPost } from '../../lib/datocms'
 
 import Header from "../../components/Header";
 import Post from '../../components/Post'
+import { SuggestedPosts } from "../../components/SuggestedPosts";
 
 export default function PostPost() {
     const [ post, setPost ] = useState()
+    const [ posts, setPosts ] = useState()
     const router = useRouter()
     const idPost = router.query.id
  
     useEffect(() => {
         const getPostPage = async () => {
             const response = await getPost(idPost)
+            const responseAllPost = await getAllPost()
+            setPosts(responseAllPost?.allPosts)
             const headline = response?.allPosts[0]
             setPost(headline)
         }
@@ -28,7 +32,6 @@ export default function PostPost() {
             {
                 post && (
                     <>
-                        <Post idPost={post.id} createdAt={post.createdAt} postContent={post.postcontent} />
                         <Head>
                             <title>
                             {
@@ -36,9 +39,12 @@ export default function PostPost() {
                             }
                             </title>
                         </Head>
+                        <Post idPost={post.id} createdAt={post.createdAt} postContent={post.postcontent} />
+                        <SuggestedPosts posts={posts} category="css" />
                     </>
                 )
             }
+            
         </>
     )
 }
