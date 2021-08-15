@@ -8,24 +8,8 @@ import Header from "../../components/Header";
 import Post from '../../components/Post'
 import { SuggestedPosts } from "../../components/SuggestedPosts";
 
-export default function PostPost() {
-    const [ post, setPost ] = useState()
-    const [ posts, setPosts ] = useState()
-    const router = useRouter()
-    const idPost = router.query.id
+export default function PostPost({posts, post}) {
  
-    useEffect(() => {
-        const getPostPage = async () => {
-            const response = await getPost(idPost)
-            const responseAllPost = await getAllPost()
-            setPosts(responseAllPost?.allPosts)
-            const headline = response?.allPosts[0]
-            setPost(headline)
-        }
-
-        getPostPage()
-    }, [idPost])
-
     return (
         <>
             <Header />
@@ -49,14 +33,25 @@ export default function PostPost() {
     )
 }
 
-// export async function getStaticProps(context) {
-//     const response = await getPost(context.params)
-//     const post = response.allPosts[0]
+export async function getStaticPaths() {
+    return {
+        paths: [],
+        fallback: true
+    }
+}
 
-//     return {
-//         props: {
-//             post
-//         },
-//         // revalidate: 100
-//     }
-// }
+
+export async function getStaticProps(context) {
+    // const response = await getPost(context.params.id)
+    const responseAllPost = await getAllPost()
+    const posts = responseAllPost.allPosts
+    const post = posts.filter(post => post.id === context.params.id)
+
+    return {
+        props: {
+            post,
+            posts
+        },
+        revalidate: 100
+    }
+}
