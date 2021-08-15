@@ -48,15 +48,15 @@ export default function Category({postsByCategory}) {
                     </div>
                 )
                 : (
-                    <>
+                    <div>
                         <Image  
                             src="/notcomments.svg"
                             alt="Ainda não há comentátarios"
                             width={900}
                             height={350}
                         />
-                        {router.query.category && <h3 className={styles.not_commnets}>Ainda não há post sobre {category}</h3>}
-                    </>
+                        {router.query.category && <h3 className={styles.not_posts}>Ainda não há post sobre {category}</h3>}
+                    </div>
                 )
             }
         </main>

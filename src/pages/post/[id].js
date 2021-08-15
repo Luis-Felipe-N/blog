@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import Head from 'next/head'
 
 import { getAllPost, getPost } from '../../lib/datocms'
@@ -8,11 +8,26 @@ import Header from "../../components/Header";
 import Post from '../../components/Post'
 import { SuggestedPosts } from "../../components/SuggestedPosts";
 
-export default function PostPost({posts, post}) {
+export default function PostPost({posts}) {
+    const [ post, setPost ] = useState()
+
+    const router = useRouter()
  
+    useEffect(() => {
+        if (posts) {
+            const parsedPost = posts.filter( post => post.id == router.query.id)[0]
+            console.log(parsedPost)
+            if (parsedPost) {
+                setPost(parsedPost)
+            } else {
+                router.push('/404')
+            }
+        }
+    }, [posts])
+    
     return (
         <>
-            <Header />
+                <Header />
             {
                 post && (
                     <>
@@ -42,16 +57,11 @@ export async function getStaticPaths() {
 
 
 export async function getStaticProps(context) {
-    // const response = await getPost(context.params.id)
     const responseAllPost = await getAllPost()
-    const posts = responseAllPost.allPosts
-    const post = posts.filter(post => post.id === context.params.id)
-
+    const posts = await responseAllPost.allPosts
     return {
         props: {
-            post,
             posts
         },
-        revalidate: 100
     }
 }
