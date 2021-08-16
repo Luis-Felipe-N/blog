@@ -20,6 +20,10 @@
     }
     
     .card_footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 10rem;
         padding: .7rem;
 
         .title {
