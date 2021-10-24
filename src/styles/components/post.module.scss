@@ -2,14 +2,15 @@
 @import '../utils/mixins.scss';
 
 .post {
-    width: 100%;
     padding: 1rem 5%;
     display: grid;
+    max-width: 100%;
     place-items: center;
     gap: 2rem;
     flex-direction: column;
     
     .postContent {
+
         
         .header__title {
             max-width: 1000px;
@@ -23,7 +24,6 @@
             }
     
             .subtitle {
-                // font-size: 22px;
                 font-size: max(1.9vw, 20px);
                 font-weight: 500;
                 margin-bottom: 1rem;
@@ -47,13 +47,14 @@
         }
     
         .main__content {
-            display: flex;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.3);
             flex-direction: column;
+            display: flex;
             gap: 2rem;
-            max-width: 800px;
             margin: 0 auto;
             padding-bottom: 2rem;
-            border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
             
             .content {
                 color: rgba(0, 0, 0, 0.8);
@@ -75,14 +76,16 @@
                 }
             }
 
-            .content_code {
-                width: calc(100vw - 10%);
-                max-width: 100%;
+            .container_code {
+                pre[class*="language-"] {
+
+                    white-space: pre-wrap ;
+                }
             }
 
             .img {
-                width: 80% !important;
-                height: 80%;
+                // width: 80% !important;
+                // height: 80%;
                 object-fit: cover;
             }
 
@@ -98,7 +101,7 @@
             background-color: #fff;
             border-radius: 5px;
             padding: 1.5rem;
-            max-width: 60%;
+            // max-width: 60%;
             margin: auto;
     
             header {
@@ -186,51 +189,26 @@
     }
 }
 
-// @media (max-width: 1100px) {
-//     .post {
 
-//         .postContent  {
+// @media (max-width: 800px) {
+//     .post {
+//         .postContent {
 //             .main__content {
 //                 margin: 0;
-
+        
 //                 .content {
-//                     font-size: 16px;
+//                     font-size: 18px;
 //                 }
 //             }
 //         }
 
-        
 //         .interaction_post {
-//             // padding: 2rem 0;
-
-//             .article__author_box, .comments_box {
-//                 // width: 50%;
+    
+//             .comments_box{
+//                 max-width: 100%;
+//                 box-shadow: none;
+//                 margin-bottom: 2rem;
 //             }
 //         }
 //     }
 // }
-
-@media (max-width: 800px) {
-    .post {
-        .postContent {
-            .main__content {
-                margin: 0;
-        
-                .content {
-                    font-size: 18px;
-                }
-            }
-        }
-
-        .interaction_post {
-            // width: 100vw;
-    
-            .comments_box{
-                max-width: 100%;
-                box-shadow: none;
-                margin-bottom: 2rem;
-                // margin: 0;
-            }
-        }
-    }
-}

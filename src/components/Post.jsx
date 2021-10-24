@@ -108,11 +108,13 @@ export default function Post({idPost, createdAt,postContent}) {
 
                             if (item._modelApiKey === 'code') {
                                 return (
-                                    <pre key={item.id} className={`language-${item.language} ${styles.content_code}`}>
+                                    <div className={styles.container_code}>
+                                        <pre key={item.id} className={`language-${item.language}`}>
                                         <code>
                                             {item.content}
                                         </code>
                                     </pre>
+                                    </div>
                                 )
                             }
 
