@@ -75,6 +75,11 @@
                 }
             }
 
+            .content_code {
+                width: calc(100vw - 10%);
+                max-width: 100%;
+            }
+
             .img {
                 width: 80% !important;
                 height: 80%;

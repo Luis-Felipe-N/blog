@@ -106,6 +106,16 @@ export default function Post({idPost, createdAt,postContent}) {
                                 return <div key={item.id} className={styles.content} dangerouslySetInnerHTML={{__html: item.conteudo}}></div>
                             }
 
+                            if (item._modelApiKey === 'code') {
+                                return (
+                                    <pre key={item.id} className={`language-${item.language} ${styles.content_code}`}>
+                                        <code>
+                                            {item.content}
+                                        </code>
+                                    </pre>
+                                )
+                            }
+
                             if (item._modelApiKey === 'image') {
                                 if(item.video) {
                                     return (

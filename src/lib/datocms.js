@@ -29,6 +29,12 @@ export const getAllPost = async () => {
         _status
         createdAt
         postcontent {
+          ... on CodeRecord {
+            id
+            language
+            _modelApiKey
+            content
+          }
           ... on CategoryRecord {
             id
             categorias
@@ -106,6 +112,12 @@ export const getPost = async postId => {
         _status
         createdAt
         postcontent {
+          ... on CodeRecord {
+            id
+            language
+            _modelApiKey
+            content
+          }
           ... on ContentRecord {
             conteudo
             id
