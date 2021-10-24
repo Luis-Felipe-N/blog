@@ -109,7 +109,7 @@ export default function Post({idPost, createdAt,postContent}) {
                             if (item._modelApiKey === 'code') {
                                 return (
                                     <div className={styles.container_code}>
-                                        <pre key={item.id} className={`language-${item.language}`}>
+                                        <pre key={item.id} className={`language-${item.language}`} style={{whiteSpace: 'pre-wrap !important'}}>
                                         <code>
                                             {item.content}
                                         </code>

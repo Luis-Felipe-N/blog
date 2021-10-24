@@ -80,3 +80,8 @@ input {
     transform: translateX(5px);
   }
 }
+
+pre[class*="language-"] div > pre, pre {
+
+  white-space: normal !important;
+}

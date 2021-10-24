@@ -77,9 +77,10 @@
             }
 
             .container_code {
+                background-color: chartreuse;
                 pre[class*="language-"] {
 
-                    white-space: pre-wrap ;
+                    white-space: normal !important;
                 }
             }
 
