@@ -5,7 +5,9 @@ export default function formatCreatedAt(data) {
     const tresHoras = 60 * 60 * 3 * 1000
     const dataDaPublicação = new Date(tempoPublicado + tresHoras)
 
-    if ( dataDaPublicação.getDate() > 1 ) {
+    if ( dataDaPublicação.getMonth() > 0 ) {
+        return `Há ${dataDaPublicação.getMonth()} meses atrás`
+    } else if ( dataDaPublicação.getDate() > 1 ) {
         return `Há ${dataDaPublicação.getDate() - 1} dias atrás`
     } else if ( dataDaPublicação.getHours() > 0 ) {
         return `Há ${dataDaPublicação.getHours()} horas atrás`

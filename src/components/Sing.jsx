@@ -1,5 +1,3 @@
-
-
 import styles from '../styles/pages/sing.module.scss'
 import Header from './Header'
 

@@ -1,6 +1,9 @@
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Router from 'next/router'
-import { useEffect, useState } from 'react'
+
+import Prism from 'prismjs'
+import 'prismjs/themes/prism-tomorrow.css'
 
 import { Button } from './Button'
 
@@ -21,6 +24,9 @@ export default function Post({idPost, createdAt,postContent}) {
 
     const {user} = useAuth()
 
+    useEffect(() => {
+        Prism.highlightAll()
+    }, [])
 
     useEffect(() => {
         const ref = db.ref(`comments/${idPost}`)
@@ -81,7 +87,6 @@ export default function Post({idPost, createdAt,postContent}) {
                 <header className={styles.header__title}>
                     <h1 className={styles.title}>
                         {postContent.filter( item => item._modelApiKey === 'title').map(item => item.titulo)}
-                        .
                     </h1>
                     <h3 className={styles.subtitle}>
                         {postContent.filter( item => item._modelApiKey === 'subtitle').map(item => item.subtitulo)}

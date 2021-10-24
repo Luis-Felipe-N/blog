@@ -14,13 +14,17 @@ export default function PostPost({posts}) {
     const router = useRouter()
  
     useEffect(() => {
-        if (posts) {
-            const parsedPost = posts.filter( post => post.id == router.query.id)[0]
-            console.log(parsedPost)
-            if (parsedPost) {
-                setPost(parsedPost)
-            } else {
-                router.push('/404')
+        if ( posts) {
+            const [,idPost] = router.query.id   
+    
+            if (router.query.id) {
+                const [parsedPost] = posts.filter( post => post.id == idPost)
+                console.log(parsedPost)
+                if (parsedPost) {
+                    setPost(parsedPost)
+                } else {
+                    router.push('/404')
+                }
             }
         }
     }, [posts])

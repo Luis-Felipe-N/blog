@@ -81,7 +81,7 @@ export const getStaticProps = async (context) => {
         props: {
             postsByCategory
         },
-        revalidate: 1
+        revalidate: 60 * 60 * 24 // 1 dia
     }
 }
 

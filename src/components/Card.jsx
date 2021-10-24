@@ -8,7 +8,9 @@ import formatCreatedAt from '../utils/formatCreatedAt'
 export default function Card({createdAt, idPost, title, thumb, author}) {
 
     function handleRedirectPagePost() {
-        Router.push(`/post/${idPost}`)
+        const titleFormated = title[0].replaceAll(' ', '-')
+        // console.log(title)
+        Router.push(`/post/${titleFormated}/${idPost}`)
     }
 
     return (
