@@ -4,7 +4,7 @@
 
 
 <h1 align="center">
-    <img alt="Blog - Thumb" title="Letmeask" src="public/blog-thumb.svg" />
+    <img alt="Blog - Thumb" title="blog" src="public/blog-thumb.svg" />
 </h1>
 
 
