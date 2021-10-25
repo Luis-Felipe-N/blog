@@ -4,6 +4,9 @@ import Router from 'next/router'
 
 import { Button } from './Button'
 
+import Prism from 'prismjs'
+import 'prismjs/themes/prism-tomorrow.css'
+
 import useAuth from '../hooks/useAuth'
 import formatCreatedAt from '../utils/formatCreatedAt'
 
@@ -20,6 +23,10 @@ export default function Post({idPost, createdAt,postContent}) {
     const [ comments, setComments ] = useState([])
 
     const {user} = useAuth()
+
+    useEffect(() => {
+        Prism.highlightAll()
+    }, [])
 
     useEffect(() => {
         const ref = db.ref(`comments/${idPost}`)
@@ -99,17 +106,19 @@ export default function Post({idPost, createdAt,postContent}) {
                                 return <div key={item.id} className={styles.content} dangerouslySetInnerHTML={{__html: item.conteudo}}></div>
                             }
 
-                            // if (item._modelApiKey === 'code') {
-                            //     return (
-                            //         <div className={styles.container_code}>
-                            //             <pre key={item.id} className={`language-${item.language}`} style={{whiteSpace: 'pre-wrap !important'}}>
-                            //             <code>
-                            //                 {item.content}
-                            //             </code>
-                            //         </pre>
-                            //         </div>
-                            //     )
-                            // }
+                            if (item._modelApiKey === 'code') {
+                                return (
+                                    
+                                    
+                                    <pre style={{whiteSpace: 'pre-wrap'}}>
+                                        <code className={`language-${item.language}`} >
+                                            {item.content}
+                                        </code>
+                                    </pre>
+                                    // </pre>
+                                    
+                                )
+                            }
 
                             if (item._modelApiKey === 'image') {
                                 if(item.video) {

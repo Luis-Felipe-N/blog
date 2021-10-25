@@ -81,7 +81,7 @@ input {
   }
 }
 
-pre[class*="language-"] div > pre, pre {
-
-  white-space: normal !important;
+code[class*="language-"],
+pre[class*="language-"] {
+  white-space: pre-wrap !important;
 }
