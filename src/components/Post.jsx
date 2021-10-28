@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Router from 'next/router'
 
+import Prism from 'prismjs'
+import 'prismjs/themes/prism-tomorrow.css'
+
 import { Button } from './Button'
 
 import useAuth from '../hooks/useAuth'
@@ -20,6 +23,10 @@ export default function Post({idPost, createdAt,postContent}) {
     const [ comments, setComments ] = useState([])
 
     const {user} = useAuth()
+
+    useEffect(() => {
+        Prism.highlightAll()
+    }, [])
 
     useEffect(() => {
         const ref = db.ref(`comments/${idPost}`)
@@ -99,17 +106,26 @@ export default function Post({idPost, createdAt,postContent}) {
                                 return <div key={item.id} className={styles.content} dangerouslySetInnerHTML={{__html: item.conteudo}}></div>
                             }
 
-                            // if (item._modelApiKey === 'code') {
-                            //     return (
-                            //         <div className={styles.container_code}>
-                            //             <pre key={item.id} className={`language-${item.language}`} style={{whiteSpace: 'pre-wrap !important'}}>
-                            //             <code>
-                            //                 {item.content}
-                            //             </code>
-                            //         </pre>
-                            //         </div>
-                            //     )
-                            // }
+                            if (item._modelApiKey === 'code') {
+                                return (
+                                    <div className={styles.container_code}>
+                                        <pre key={item.id} className={`language-${item.language}`} style={{whiteSpace: 'pre-wrap !important'}}>
+                                        <code>
+                                            {item.content}
+                                        </code>
+                                    </pre>
+                                    </div>
+                                )
+                            }
+                            if (item._modelApiKey === 'code') {
+                                return (
+                                    <pre key={item.id}  style={{whiteSpace: 'pre-wrap !important'}}>
+                                        <code className={`language-${item.language}`}>
+                                            {item.content}
+                                        </code>
+                                    </pre>
+                                )
+                            }
 
                             if (item._modelApiKey === 'image') {
                                 if(item.video) {
@@ -138,6 +154,7 @@ export default function Post({idPost, createdAt,postContent}) {
                                             src={item.imagem[0].url}
                                             width={item.imagem[0].width}
                                             height={item.imagem[0].height}
+                                            title={item.alt}
                                         />
                                     )
                                 }

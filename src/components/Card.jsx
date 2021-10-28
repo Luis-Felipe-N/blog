@@ -17,6 +17,8 @@ export default function Card({createdAt, idPost, title, thumb, author}) {
         <article onClick={handleRedirectPagePost} className={styles.card}>
             <Image
                 src={thumb.url}
+                title={thumb.title}
+                alt={thumb.alt}
                 alt="Capa do card"
                 width={300}
                 height={150}
