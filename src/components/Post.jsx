@@ -7,6 +7,9 @@ import 'prismjs/themes/prism-tomorrow.css'
 
 import { Button } from './Button'
 
+import Prism from 'prismjs'
+import 'prismjs/themes/prism-tomorrow.css'
+
 import useAuth from '../hooks/useAuth'
 import formatCreatedAt from '../utils/formatCreatedAt'
 
@@ -108,6 +111,7 @@ export default function Post({idPost, createdAt,postContent}) {
 
                             if (item._modelApiKey === 'code') {
                                 return (
+<<<<<<< HEAD
                                     <div className={styles.container_code}>
                                         <pre key={item.id} className={`language-${item.language}`} style={{whiteSpace: 'pre-wrap !important'}}>
                                         <code>
@@ -124,6 +128,17 @@ export default function Post({idPost, createdAt,postContent}) {
                                             {item.content}
                                         </code>
                                     </pre>
+=======
+                                    
+                                    
+                                    <pre style={{whiteSpace: 'pre-wrap'}}>
+                                        <code className={`language-${item.language}`} >
+                                            {item.content}
+                                        </code>
+                                    </pre>
+                                    // </pre>
+                                    
+>>>>>>> 0a6ddb0fb8d4c8dd87f6fd8f5b4d5a13e0c55cd7
                                 )
                             }
 
