@@ -27,7 +27,7 @@ export default function PostPost({posts}) {
                 }
             }
         }
-    }, [posts])
+    }, [posts, router])
     
     return (
         <>

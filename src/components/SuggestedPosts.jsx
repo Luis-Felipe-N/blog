@@ -17,7 +17,7 @@ export function SuggestedPosts({posts, category}) {
 
         setSuggestedPosts([...postsByCategory])
         console.log(postsByCategory)
-    }, [])
+    }, [ category ])
 
 
     return (
