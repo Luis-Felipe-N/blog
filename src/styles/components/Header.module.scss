@@ -137,19 +137,14 @@
             top: 0;
             bottom: 0;
             right: -100%;
-            background-color: white;
+            background-color: var(--color-black);
             flex-direction: column;
             gap: 3rem;
             transition: .2s;
             display: none;
             
             li a {
-                color: var(--color-primary);
                 font-size: 18px;
-                
-                &::after {
-                    background-color:  var(--color-primary);
-                }
             }
 
             .container_btns {
@@ -171,12 +166,6 @@
                 flex-direction: column;
                 width: 100%;
 
-                .button_icon{
-                    svg {
-                        color: var(--color-primary) !important;
-                    }
-                }
-
                 .menu_user {
                     gap: 0;
                     position: static;
@@ -189,6 +178,7 @@
         }
         
         .menu.active + [data-menu-mobile] {
+            background-color: var(--color-black);
             box-shadow: 0 0 0 2px  var(--color-primary);
         }
 

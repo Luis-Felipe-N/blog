@@ -54,6 +54,6 @@ export async function getStaticProps() {
             headline,
             posts
         },
-        revalidate: 60
+        revalidate: 60 * 60 * 24
     }
 }
