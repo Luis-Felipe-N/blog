@@ -8,8 +8,8 @@
     font-size: 18px;
     font-weight: 600;
     transition: .2s;
-    color: $color-primary;
-    background-color: white;
+    color: var(--color-primary);
+    // background-color: var(--color-bac);
 
     &:not(:disabled) {
         &:hover {
@@ -29,8 +29,8 @@
     font-size: 18px;
     font-weight: 600;
     transition: .2s;
-    color: white;
-    background-color: $color-primary;
+    color: var(--color-white);
+    background-color: var(--color-primary);
 
     &:disabled{
         filter: brightness(.6);

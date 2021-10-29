@@ -15,11 +15,11 @@
         .header__title {
             max-width: 1000px;
             margin-bottom: 3rem;
-            border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid var(--color-white-400);
     
             .title {
                 font-size: 4.5rem;
-                line-height: (4.5rem );
+                line-height: 4.5rem;
                 margin-bottom: 1rem;
             }
     
@@ -27,12 +27,12 @@
                 font-size: max(1.9vw, 20px);
                 font-weight: 500;
                 margin-bottom: 1rem;
-                color: rgba(0, 0, 0, 0.6);
+                color: var(--color-white-600);
             }
     
             .autor {
                 font-size: 16px;
-                color: rgba(0, 0, 0, 0.6);
+                color: var(--color-white-600);
             }
 
             .header__bottom {
@@ -41,13 +41,13 @@
             }
     
             .date {
-                color: rgba(0, 0, 0, 0.6);
+                color: var(--color-white-600);
                 margin-bottom: 1rem;
             }
         }
     
         .main__content {
-            border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid var(--color-white-400);
             flex-direction: column;
             display: flex;
             gap: 2rem;
@@ -57,10 +57,10 @@
             width: 100%;
             
             .content {
-                color: rgba(0, 0, 0, 0.8);
+                color: var(--color-white-800);
                 
                 a {
-                    color: $color-primary;
+                    color: var(--color-primary);
                     font-weight: 600;
                     text-decoration: underline;
                 }
@@ -77,16 +77,12 @@
             }
 
             .container_code {
-                background-color: chartreuse;
-                pre[class*="language-"] {
-
-                    white-space: normal !important;
-                }
+                border-radius: 5px;
+                overflow: hidden;
             }
 
             .img {
-                width: 80% !important;
-                height: 80%;
+                width: 100%;
                 object-fit: cover;
             }
 
@@ -98,11 +94,11 @@
         width: 100%;
 
         .comments_box{
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-            background-color: #fff;
+            box-shadow: 0 0 5px var(--color-black-600);
+            background-color: var(--color-black);
             border-radius: 5px;
             padding: 1.5rem;
-            max-width: 60%;
+            max-width: 800px;
             margin: auto;
     
             header {
@@ -112,7 +108,7 @@
                 h1 {
                     font-size: 22px;
                     font-weight: 500;
-                    color: rgba(0, 0, 0, 0.8);
+                    color: var(--color-white-800);
                     margin-bottom: .7rem;
                 }
             }
@@ -124,13 +120,18 @@
                     textarea {
                         margin-top: 1.7rem;
                         min-height: 100px;
-                        resize: none;
                         padding: .8rem;
-                        border: 2px solid rgba(0, 0, 0, 0.3);
+
+                        resize: none;
+
+                        border: 2px solid var(--color-black-600);
                         border-radius: 5px;
+                        background-color: var(--color-black-600);
+
                         font-size: 16px;
                         font-weight: 500;
                         font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+                        color: var(--color-white);
                     }
                 }
     
@@ -154,7 +155,7 @@
                             @include center-sb;
                             font-size: 18px;
                             font-weight: 600;
-                            color: $color-primary;
+                            color: var(--color-primary);
                             display: flex;
                             align-items: center;
                             gap: .2rem;
@@ -163,7 +164,7 @@
                                 padding: .3rem;
                                 border-radius: .2rem;
                                 border: 0;
-                                background-color: white;
+                                background-color: var(--color-black);
                                 cursor: pointer;
     
                                 @include hover;
@@ -173,12 +174,12 @@
                         .comment{
                             font-size: 14px;
                             font-weight: 600;
-                            color: rgba(0, 0, 0, 0.6)
+                            color: var(--color-white-600)
                         }
                         
                         .createdAt {
                             font-size: 12px;
-                            color: rgba(0, 0, 0, 0.6)
+                            color: var(--color-white-600)
                         }
                     }
                 }
@@ -190,25 +191,17 @@
 }
 
 
-// @media (max-width: 800px) {
-//     .post {
-//         .postContent {
-//             .main__content {
-//                 margin: 0;
-        
-//                 .content {
-//                     font-size: 18px;
-//                 }
-//             }
-//         }
+@media (max-width: 800px) {
+    .post {
+        .postContent {
+            .header__title {
 
-//         .interaction_post {
-    
-//             .comments_box{
-//                 max-width: 100%;
-//                 box-shadow: none;
-//                 margin-bottom: 2rem;
-//             }
-//         }
-//     }
-// }
+                .title {
+                    font-size: 4rem;
+                    line-height: 4rem;
+                }
+            }
+        }
+    }
+
+}

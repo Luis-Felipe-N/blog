@@ -9,7 +9,8 @@
     position: sticky;
     top: 0;
     z-index: 2;
-    background-color: $color-primary;
+    background-color: var(--color-primary);
+
 
 
     .logo {
@@ -45,34 +46,39 @@
 
             .menu_user.active{
                 display: flex;
+                flex-direction: column;
+
                 animation: animaTop .2s forwards;
                 width: 140px;
-                overflow: hidden;
-                background-color: #fff;
+                background-color: var(--color-black);
                 box-shadow: 0 0 20px rgb(0, 0, 0, 0.2);
-                flex-direction: column;
                 
-
                 border-radius: 5px;
-
+                
                 position: absolute;
                 top: 3rem;
                 right: 0;
+                overflow: hidden;
 
                 li {
                     &:first-child {
-                        padding: .7rem;
+                        padding: .7rem 1rem;
                     }
                 
                     width: 100%;
 
-                    button {
-                        border-radius:0;
-                        width: 100%;
-                        padding: .7rem;
-                        height: 100%;
-                                         
-                    }
+                }
+                button {
+                    text-align: start;
+                    background-color: transparent;
+                    border-radius:0;
+                    border: 0;
+                    width: 100%;
+                    padding: .7rem 1rem;
+                    height: 100%;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    color: red;
                 }
             }
         }
@@ -96,7 +102,7 @@
                 left: 50%;
                 transform: translateX(-50%);
                 
-                background-color: white;
+                background-color: var(--color-white);
                 margin-top: 5px;
                 transition: .2s;
             }
@@ -138,11 +144,11 @@
             display: none;
             
             li a {
-                color: $color-primary;
+                color: var(--color-primary);
                 font-size: 18px;
                 
                 &::after {
-                    background-color:  $color-primary;
+                    background-color:  var(--color-primary);
                 }
             }
 
@@ -167,7 +173,7 @@
 
                 .button_icon{
                     svg {
-                        color: $color-primary !important;
+                        color: var(--color-primary) !important;
                     }
                 }
 
@@ -183,7 +189,7 @@
         }
         
         .menu.active + [data-menu-mobile] {
-            box-shadow: 0 0 0 2px  $color-primary;
+            box-shadow: 0 0 0 2px  var(--color-primary);
         }
 
     }

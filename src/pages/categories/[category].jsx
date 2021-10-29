@@ -84,9 +84,3 @@ export const getStaticProps = async (context) => {
         revalidate: 60 * 60 * 24 // 1 dia
     }
 }
-
-//  ... on CategoryRecord {
-//         id
-//         categorias
-//         _modelApiKey
-//       }

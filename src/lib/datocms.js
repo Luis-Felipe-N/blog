@@ -178,6 +178,5 @@ export const getPost = async postId => {
     }
   
     `)
-      console.log(postId, data)
     return data
 }

@@ -9,7 +9,7 @@ export default function Card({createdAt, idPost, title, thumb, author}) {
 
     function handleRedirectPagePost() {
         const titleFormated = title[0].replaceAll(' ', '-')
-        // console.log(title)
+        
         Router.push(`/post/${titleFormated}/${idPost}`)
     }
 

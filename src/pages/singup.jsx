@@ -24,7 +24,6 @@ export default function Singup() {
         setLoaging(true)
 
         const response = await createAcount(userName, email, senha)
-        console.log(response)
 
         if ( !response?.code ) {
             Router.push('/')

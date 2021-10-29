@@ -74,7 +74,7 @@ export default function Header() {
                                 </button>
                                 <ul data-menu-user className={menuUserIsOpen ? `${styles.menu_user} ${styles.active}` : styles.menu_user} >
                                     <li>{user.name}</li>
-                                    <li><Button onClick={handleLogOutUser} isInverse>Logout</Button></li>
+                                    <li><button onClick={handleLogOutUser} isInverse>Logout</button></li>
                                 </ul>
 
                             </>)

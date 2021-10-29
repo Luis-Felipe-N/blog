@@ -25,8 +25,9 @@ export default function Post({idPost, createdAt,postContent}) {
     const {user} = useAuth()
 
     useEffect(() => {
+        console.log(idPost)
         Prism.highlightAll()
-    }, [])
+    }, [idPost])
 
     useEffect(() => {
         const ref = db.ref(`comments/${idPost}`)
@@ -46,7 +47,7 @@ export default function Post({idPost, createdAt,postContent}) {
                 return
             }
         })
-    }, [])        
+    }, [idPost])        
 
  
     async function handleNewComment(e, id) {
@@ -60,7 +61,7 @@ export default function Post({idPost, createdAt,postContent}) {
                 }
             } else {
                 const dataCreatedcomment = new Date()
-                console.log(dataCreatedcomment)
+
                 const parsedCommet = {
                     content: comment,
                     author: user,
@@ -109,7 +110,7 @@ export default function Post({idPost, createdAt,postContent}) {
                             if (item._modelApiKey === 'code') {
                                 return (                                   
                                     
-                                    <pre style={{whiteSpace: 'pre-wrap'}}>
+                                    <pre key={item.id} style={{whiteSpace: 'pre-wrap'}}>
                                         <code className={`language-${item.language}`} >
                                             {item.content}
                                         </code>
@@ -137,13 +138,11 @@ export default function Post({idPost, createdAt,postContent}) {
                             if (item._modelApiKey === 'image') {
                                 if(item.imagem[0]) {
                                     return (
-                                        <Image
+                                        <img
                                             alt={item.alt}
                                             key={item.id}
                                             className={styles.img}
                                             src={item.imagem[0].url}
-                                            width={item.imagem[0].width}
-                                            height={item.imagem[0].height}
                                             title={item.alt}
                                         />
                                     )

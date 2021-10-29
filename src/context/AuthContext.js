@@ -72,7 +72,6 @@ export function AuthProvider({children}) {
 
         try {
             const response = await auth.createUserWithEmailAndPassword(email, senha)
-            console.log(response)
 
             if (response.user.uid) {
                 const { uid } = response.user 
@@ -91,7 +90,7 @@ export function AuthProvider({children}) {
                 }
             } 
         } catch (erro) {
-            console.log(erro)
+
             if (erro.code === 'auth/email-already-in-use') {
                 return {
                     code: 'email' ,
